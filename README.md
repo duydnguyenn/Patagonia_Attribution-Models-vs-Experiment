@@ -1,12 +1,18 @@
 # Patagonia: Attribution Models vs. Experiment
 
-**Author:** duydnguyenn
+**Author:** Duy Nguyen | **Published:** April 2026
+
+**Dataset:** Controlled Experiment Campaign
+
+---
 
 ## Overview
 
 This project analyzes Patagonia's digital marketing data to evaluate whether naive attribution models (last-touch, first-touch, linear) produce reliable signals for marketing budget allocation — or whether experimentally-derived incremental impact is necessary for sound decision-making.
 
 Patagonia ran a 3-week holdout experiment across five marketing channels with 2 million customers randomly selected from its CRM. This project uses that experimental data to measure true incremental lift and compare it against what naive attribution would have suggested.
+
+---
 
 ## Research Questions
 
@@ -15,6 +21,8 @@ Patagonia ran a 3-week holdout experiment across five marketing channels with 2 
 3. **Regression-Based Estimation** — Does regression with control variables improve on simple ITT comparisons?
 4. **ROI of Marketing Channels** — How does ROI change when calculated using incremental vs. naive attribution?
 5. **Was Simple Good Enough?** — Do naive models align with incremental findings? What are the risks of relying on them?
+
+---
 
 ## Dataset
 
@@ -31,6 +39,8 @@ Patagonia ran a 3-week holdout experiment across five marketing channels with 2 
 
 **Experimental design:** 20% holdout rate per channel, independent random assignment at the customer level (except Google Search, which used geo-targeting due to platform constraints).
 
+---
+
 ## Key Findings
 
 Naive attribution models — last-touch, first-touch, and linear — significantly overstate the effectiveness of marketing channels by attributing all observed sales to advertising, including purchases that would have occurred organically. The experimental holdout design reveals that only $385K of the $1.48M claimed by last-touch attribution was truly incremental — a **3.8× overstatement**. The remaining $1.09M represents organic sales that would have occurred without any of the five channels.
@@ -46,6 +56,8 @@ Key contrasts between the two approaches:
 
 These findings demonstrate that experiment-based incremental measurement is essential for sound marketing budget allocation. The naive ranking is largely inverted relative to the true incremental picture — the channel that appears best destroys value, while the channel that appears worst generates the highest returns.
 
+---
+
 ## Repository Structure
 
 ```
@@ -56,6 +68,8 @@ These findings demonstrate that experiment-based incremental measurement is esse
 ├── .gitignore
 └── README.md
 ```
+
+---
 
 ## How to Run
 
