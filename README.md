@@ -20,7 +20,7 @@ Patagonia ran a 3-week holdout experiment across five marketing channels with 2 
 
 - **Source:** Patagonia CRM experiment, Fall 2024 – Early 2025
 - **Full dataset:** 2,000,000 customers, 22 variables
-- **Sampled dataset (`data/sample.csv`):** 50,000 rows, stratified by conversion status
+- **Local dataset (`data/patagonia.csv`):** Full 2,000,000 rows — gitignored, must be added locally
 
 **Channels studied:**
 - Email
@@ -33,23 +33,24 @@ Patagonia ran a 3-week holdout experiment across five marketing channels with 2 
 
 ## Key Findings
 
-Naive attribution models — last-touch, first-touch, and linear — significantly overstate the effectiveness of marketing channels by attributing all observed sales to advertising, including purchases that would have occurred organically. The experimental holdout design reveals that the majority of Patagonia's sales among exposed customers were driven by organic demand, not by the channels that received credit under attribution.
+Naive attribution models — last-touch, first-touch, and linear — significantly overstate the effectiveness of marketing channels by attributing all observed sales to advertising, including purchases that would have occurred organically. The experimental holdout design reveals that only $385K of the $1.48M claimed by last-touch attribution was truly incremental — a **3.8× overstatement**. The remaining $1.09M represents organic sales that would have occurred without any of the five channels.
 
 The experiment provides a more accurate basis for evaluating channel performance because it isolates **incremental impact**: the additional sales generated specifically because a customer was exposed to a channel. By comparing treatment and holdout groups, we can estimate what would have happened in the absence of marketing — a counterfactual that no attribution model can construct.
 
 Key contrasts between the two approaches:
 
-- **Channels that attribution overstates:** Google Search and Contextual Display appear highly effective under last-touch attribution due to their position in the conversion journey. Incremental analysis shows both channels generate negative ROI after accounting for their cost relative to true lift.
-- **Channels that attribution understates:** Email and YouTube are undervalued by attribution models focused on last-touch but demonstrate strong positive incremental ROI in the experiment.
-- **Scale of the gap:** Naive attribution attributes roughly 4× more revenue to marketing than the experiment supports. The remainder represents organic sales that would have occurred without any of the five channels.
+- **Contextual Display — most misleading:** Ranked #1 under last-touch attribution (1,197% ROI) but ranks #4 under incremental measurement with a **negative ROI of -34%**. Its ITT effect is not statistically significant. Its high naive ranking is driven entirely by impression volume, not causal impact.
+- **Email — most understated:** Ranked #4 under last-touch (51% ROI) but is the **best-performing channel incrementally (63% ROI)**. Attribution undervalues it because it rarely appears as the last touchpoint before conversion.
+- **Instagram — overstated:** Ranked #2 naive (541% ROI) but #3 incremental (45% ROI). Positive returns, but attribution greatly inflates its perceived value.
+- **Google Search — negative under both:** The only channel where both methods agree on direction, but incremental measurement reveals a worse picture (-94% ROI) than last-touch suggests (-60% ROI), driven by its high cost-per-click.
 
-These findings demonstrate that experiment-based incremental measurement is essential for sound marketing budget allocation. Attribution models, while operationally convenient, systematically mislead investment decisions by conflating correlation with causation.
+These findings demonstrate that experiment-based incremental measurement is essential for sound marketing budget allocation. The naive ranking is largely inverted relative to the true incremental picture — the channel that appears best destroys value, while the channel that appears worst generates the highest returns.
 
 ## Repository Structure
 
 ```
 ├── data/
-│   └── sample.csv          # 50,000-row stratified sample
+│   └── patagonia.csv       # Full dataset — gitignored, must be added locally
 ├── patagonia_attribution.ipynb  # Main analysis notebook (executed)
 ├── requirements.txt
 ├── .gitignore
@@ -64,12 +65,14 @@ These findings demonstrate that experiment-based incremental measurement is esse
    cd Patagonia_Attribution-Models-vs-Experiment
    ```
 
-2. Install dependencies:
+2. Add the dataset: place `patagonia.csv` in the `data/` folder (not tracked by git).
+
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Launch the notebook:
+4. Launch the notebook:
    ```bash
    jupyter notebook patagonia_attribution.ipynb
    ```
