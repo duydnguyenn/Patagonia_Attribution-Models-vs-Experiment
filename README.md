@@ -68,25 +68,3 @@ These findings demonstrate that experiment-based incremental measurement is esse
 ├── .gitignore
 └── README.md
 ```
-
----
-
-## How to Run
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/duydnguyenn/Patagonia_Attribution-Models-vs-Experiment.git
-   cd Patagonia_Attribution-Models-vs-Experiment
-   ```
-
-2. Add the dataset: place `patagonia.csv` in the `data/` folder (not tracked by git).
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Launch the notebook:
-   ```bash
-   jupyter notebook patagonia_attribution.ipynb
-   ```
